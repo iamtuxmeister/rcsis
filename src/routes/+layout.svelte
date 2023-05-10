@@ -97,13 +97,20 @@
 	<Sidebar asideClass="w-54">
 		<SidebarWrapper divClass="overflow-y-auto py-4 px-3 rounded dark:bg-gray-800">
 			<SidebarGroup>
-				<SidebarItem label="Home" href="/" on:click={toggleSide} active={activeUrl === `/`} />
+				<SidebarItem
+					label="Home"
+					href="/"
+					on:click={toggleSide}
+					active={activeUrl === `/`}
+					data-sveltkit-prefetch
+				/>
 				<SidebarItem
 					label="Gradebook"
 					href={`/gradebook/`}
 					{spanClass}
 					on:click={toggleSide}
 					active={activeUrl === `/gradebook`}
+					data-sveltkit-prefetch
 				/>
 				<!-- <SidebarDropdownWrapper label="Articles">
 					<SidebarItem
