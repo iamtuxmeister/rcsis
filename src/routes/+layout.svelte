@@ -20,14 +20,12 @@
 	} from 'flowbite-svelte';
 	import { Cog } from 'svelte-heros-v2';
 	import { sineIn } from 'svelte/easing';
-	import Breadcrumbs from '../components/Breadcrumbs.svelte';
 
 	let transitionParams = {
 		x: -320,
 		duration: 200,
 		easing: sineIn
 	};
-	export let data: PageData;
 
 	let breakPoint: number = 1024;
 	let width: number;
@@ -80,9 +78,6 @@
 	<NavUl {hidden} {divClass} {ulClass}>
 		<NavLi href="/">Home</NavLi>
 		<NavLi href="/pages/about">About</NavLi>
-		<NavLi href="https://github.com/shinokada/flowbite-sveltekit-responsive-sidebar-layout"
-			>GitHub</NavLi
-		>
 	</NavUl>
 </Navbar>
 <DarkMode btnClass={darkmodebtn} />
@@ -126,7 +121,6 @@
 
 <div class="flex px-4 mx-auto w-full">
 	<main class="lg:ml-72 w-full mx-auto">
-		<Breadcrumbs />
 		<slot />
 	</main>
 </div>
