@@ -9,8 +9,10 @@
 		TableHeadCell,
 		TableSearch
 	} from 'flowbite-svelte';
-	import type { Crumb } from '../../components/Breadcrumbs.svelte';
-	import Breadcrumbs from '../../components/Breadcrumbs.svelte';
+	import type { Crumb } from '$lib/Breadcrumbs.svelte';
+	import Breadcrumbs from '$lib/Breadcrumbs.svelte';
+	import Card from '$lib/Card.svelte';
+	import { goto } from '$app/navigation';
 	const crumbs: Crumb[] = [
 		{ name: 'Home', path: '/' },
 		{ name: 'Gradebook', path: '' }
@@ -26,21 +28,24 @@
 
 <Breadcrumbs {crumbs} />
 <Heading class="p-8" tag="h1" customSize="text-3xl">Hello from the Gradebook</Heading>
-<TableSearch placeholder="Search by last name" hoverable={true} bind:inputValue={searchTerm}>
-	<TableHead>
-		<TableHeadCell>ID</TableHeadCell>
-		<TableHeadCell>First Name</TableHeadCell>
-		<TableHeadCell>Last Name</TableHeadCell>
-		<TableHeadCell>AgeS</TableHeadCell>
-	</TableHead>
-	<TableBody>
-		{#each filteredItems as item}
-			<TableBodyRow>
-				<a href="/gradebook/{item.id}"><TableBodyCell>{item.id}</TableBodyCell></a>
-				<TableBodyCell><a href="/gradebook/{item.id}">{item.firstName}</a></TableBodyCell>
-				<TableBodyCell><a href="/gradebook/{item.id}">{item.lastName}</a></TableBodyCell>
-				<TableBodyCell><a href="/gradebook/{item.id}">{item.age}</a></TableBodyCell>
-			</TableBodyRow>
-		{/each}
-	</TableBody>
-</TableSearch>
+<Card title="Student List">
+	<TableSearch placeholder="Search by last name" hoverable={true} bind:inputValue={searchTerm}>
+		<TableHead>
+			<TableHeadCell>ID</TableHeadCell>
+			<TableHeadCell>First Name</TableHeadCell>
+			<TableHeadCell>Last Name</TableHeadCell>
+			<TableHeadCell>AgeS</TableHeadCell>
+		</TableHead>
+		<TableBody>
+			{#each filteredItems as item}
+				<!-- href="/gradebook/{item.id}" -->
+				<TableBodyRow on:click={() => goto(`/gradebook/${item.id}`)} style="cursor:pointer">
+					<TableBodyCell>{item.id}</TableBodyCell>
+					<TableBodyCell>{item.firstName}</TableBodyCell>
+					<TableBodyCell>{item.lastName}</TableBodyCell>
+					<TableBodyCell>{item.age}</TableBodyCell>
+				</TableBodyRow>
+			{/each}
+		</TableBody>
+	</TableSearch>
+</Card>

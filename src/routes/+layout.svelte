@@ -1,6 +1,5 @@
 <script lang="ts">
 	import '../app.postcss';
-	import type { PageData } from './$types';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import {
