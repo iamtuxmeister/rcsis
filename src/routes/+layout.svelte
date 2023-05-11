@@ -109,7 +109,7 @@
 					href={`/gradebook/`}
 					{spanClass}
 					on:click={toggleSide}
-					active={activeUrl === `/gradebook`}
+					active={activeUrl === `/gradebook` || activeUrl === `/gradebook/1234`}
 					data-sveltkit-prefetch
 				/>
 				<!-- <SidebarDropdownWrapper label="Articles">
