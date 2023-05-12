@@ -16,12 +16,16 @@ datasource db {
   relationMode = "prisma"
 }
 
-model Post {
+model Person {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
+  firstName String
+  lastName  String
+}
 
-  content  String
-  authorId String
-
-  @@index([authorId])
+model Allergy {
+  id        String  @id @default(cuid())
+  type      String
+  substance String
+  reaction  String?
 }

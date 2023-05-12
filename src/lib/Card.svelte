@@ -1,12 +1,13 @@
 <script lang="ts">
 	export let title: string = '';
 	export let grid: boolean = false;
-	export let colspan: string = '12';
-	const gridParts = grid ? ' grid grid-cols-6 md:grid-cols-12 gap-2' : '';
+	export let columns: string = 'twelve';
+	const colSpan = `${columns} columns`;
+	const gridParts = grid ? ' columns' : '';
 </script>
 
 <div
-	class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-xl bg-gray-200 dark:bg-gray-800 col-span-{colspan}"
+	class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-xl bg-gray-200 dark:bg-gray-800 {colSpan}"
 >
 	<div class="rounded-t mb-0 px-4 py-3 bg-transparent">
 		<div class="flex flex-wrap items-center">
