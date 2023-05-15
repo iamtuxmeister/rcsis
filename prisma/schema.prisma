@@ -16,16 +16,80 @@ datasource db {
   relationMode = "prisma"
 }
 
-model Person {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  firstName String
-  lastName  String
+model District {
+  id       String   @id @default(cuid())
+  name     String
+  Address  String
+  Address2 String?
+  city     String
+  state    String
+  zipcode  String
+  schools  School[]
 }
 
-model Allergy {
-  id        String  @id @default(cuid())
-  type      String
-  substance String
-  reaction  String?
+model SchoolYear {
+  id        String   @id @default(cuid())
+  startDate DateTime
+  endDate   DateTime
+  school    School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId  String
+  dates     Date[]
+
+  @@index([schoolId])
+}
+
+model Date {
+  id           String     @id @default(cuid())
+  Date         DateTime
+  title        String
+  description  String?
+  type         DateType
+  schoolYear   SchoolYear @relation(fields: [schoolYearId], references: [id], onDelete: Cascade)
+  schoolYearId String
+
+  @@index([schoolYearId])
+}
+
+enum DateType {
+  INSERVICE
+  NO_SCHOOL
+  MODIFIED_SCHEDULE
+}
+
+model School {
+  id         String       @id @default(cuid())
+  district   District     @relation(fields: [districtId], references: [id], onDelete: Cascade)
+  districtId String
+  name       String
+  Address    String
+  Address2   String?
+  city       String
+  state      String
+  zipcode    String
+  mapUrl     String?
+  buildings  Building[]
+  SchoolYear SchoolYear[]
+
+  @@index([districtId])
+}
+
+model Building {
+  id          String  @id @default(cuid())
+  description String
+  school      School  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId    String
+  mapUrl      String?
+  room        Room[]
+
+  @@index([schoolId])
+}
+
+model Room {
+  id          String   @id @default(cuid())
+  number      Int
+  description String?
+  building    Building @relation(fields: [buildingId], references: [id], onDelete: Cascade)
+  buildingId  String
+
+  @@index([buildingId])
 }
