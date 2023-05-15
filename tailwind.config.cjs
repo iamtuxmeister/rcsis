@@ -5,7 +5,13 @@ const config = {
 	],
 
 	theme: {
-		extend: {}
+		extend: {
+			colors: {
+				rcs: {
+					blue: '#1a2f56'
+				}
+			}
+		}
 	},
 
 	plugins: [require('flowbite/plugin')],

@@ -5,6 +5,6 @@
 </script>
 
 <Breadcrumbs {crumbs} />
-<div class="container columns">
+<div class="container">
 	<slot />
 </div>
