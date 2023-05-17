@@ -45,5 +45,5 @@
 		"flowbite-svelte": "^0.34.12",
 		"prism": "^4.1.2"
 	},
-	"postinstall": "prisma generate"
+	"vercel-build": "prisma generate && prisma migrate deploy && next build"
 }
