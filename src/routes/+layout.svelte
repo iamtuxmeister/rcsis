@@ -77,6 +77,22 @@
 	<NavUl {hidden} {divClass} {ulClass}>
 		<NavLi href="/">Home</NavLi>
 		<NavLi href="/pages/about">About</NavLi>
+		<div class="signedInStatus">
+			<p class="nojs-show loaded">
+				{#if $page.data.session}
+					{#if $page.data.session.user?.image}
+						<span style="background-image: url('{$page.data.session.user.image}')" class="avatar" />
+					{/if}
+					<span class="signedInText">
+						{$page.data.session.user?.name}
+					</span>
+					<a href="/auth/signout" class="button" data-sveltekit-preload-data="off">Sign out</a>
+				{:else}
+					<span class="notSignedInText">You are not signed in</span>
+					<a href="/auth/signin" class="buttonPrimary" data-sveltekit-preload-data="off">Sign in</a>
+				{/if}
+			</p>
+		</div>
 	</NavUl>
 </Navbar>
 <DarkMode btnClass={darkmodebtn} />
@@ -87,7 +103,7 @@
 	bind:hidden={drawerHidden}
 	bind:activateClickOutside
 	width="w-64"
-	class="overflow-scroll pb-32"
+	class="overflow-auto pb-32"
 	id="sidebar"
 >
 	<div class="flex items-center">
