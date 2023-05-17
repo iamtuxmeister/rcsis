@@ -22,6 +22,12 @@ model District {
   schools  School[]
 }
 
+model Article {
+  id      Int    @id @default(autoincrement())
+  title   String
+  content String
+}
+
 model SchoolYear {
   id        String   @id @default(cuid())
   current   Boolean
