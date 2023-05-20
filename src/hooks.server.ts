@@ -1,6 +1,7 @@
 import { SvelteKitAuth } from '@auth/sveltekit';
 import AzureAd from '@auth/core/providers/azure-ad';
 import GitHub from '@auth/core/providers/github';
+import Google from '@auth/core/providers/google';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import {
 	AZURE_AD_CLIENT_ID,
@@ -8,7 +9,9 @@ import {
 	AZURE_AD_CLIENT_SECRET,
 	AUTH_SECRET,
 	GITHUB_ID,
-	GITHUB_SECRET
+	GITHUB_SECRET,
+	GOOGLE_CLIENT_ID,
+	GOOGLE_CLIENT_SECRET
 } from '$env/static/private';
 import { prisma } from '$lib/server/prisma';
 
@@ -20,6 +23,9 @@ export const handle = SvelteKitAuth({
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET }),
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		Google({ clientId: GOOGLE_CLIENT_ID, clientSecret: GOOGLE_CLIENT_SECRET }),
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		AzureAd({

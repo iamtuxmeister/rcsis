@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../app.postcss';
+	import '../../app.postcss';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import {
@@ -103,7 +103,7 @@
 	bind:hidden={drawerHidden}
 	bind:activateClickOutside
 	width="w-64"
-	class="overflow-auto pb-32"
+	class="overflow-auto pb-32 bg-gray-100"
 	id="sidebar"
 >
 	<div class="flex items-center">
@@ -125,6 +125,14 @@
 					{spanClass}
 					on:click={toggleSide}
 					active={activeUrl === `/gradebook` || activeUrl === `/gradebook/1234`}
+					data-sveltkit-prefetch
+				/>
+				<SidebarItem
+					label="Article"
+					href={`/articles/`}
+					{spanClass}
+					on:click={toggleSide}
+					active={activeUrl === `/articles` || activeUrl === `/gradebook/1234`}
 					data-sveltkit-prefetch
 				/>
 				<!-- <SidebarDropdownWrapper label="Articles">
